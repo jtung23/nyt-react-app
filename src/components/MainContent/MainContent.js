@@ -9,7 +9,16 @@ class MainContent extends Component {
 		topic: "",
 		startYr: "",
 		endYr: ""
-	}
+	};
+	handleInputChange = (ev) => {
+		console.log('clicky');
+		this.setState({
+			topic: ev.target.value,
+			startYr: ev.target.value,
+			endYr: ev.target.value
+		})
+	};
+
 	handleSearchSubmit = (ev) => {
 		ev.preventDefault();
 		console.log('clicky');
@@ -21,7 +30,7 @@ class MainContent extends Component {
 		console.log(usage)
     switch(usage) {
       case 'search':
-        return <SearchForm handleSearchSubmit={this.handleSearchSubmit} />;
+        return <SearchForm handleInputChange={this.handleInputChange} handleSearchSubmit={this.handleSearchSubmit} />;
         break;
       case 'result':
         return <ArticleResults />;

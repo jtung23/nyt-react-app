@@ -14,7 +14,6 @@ const SearchForm = props =>
 				value={props.topic}
 				onChange={props.handleInputChange}
 				id="topicInput"
-				required
 			/>
 
 			<label htmlFor="startYr">Start Year</label>
