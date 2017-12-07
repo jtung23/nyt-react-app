@@ -4,18 +4,37 @@
   * Top Header Bar
     * Title and text, doesnt change
   * Bottom Body
-    * Search
+    * Main
       * 3 inputs (form) 
           -topic
           -start year
           -end year
-      * Search button
-    * Results
-      * Article Title (top 5)
+        * Search button
+      * Results
+        * Article Title (top 5)
         - save button
-    * Saved Articles
+       * Saved Articles
         * Article title, date saved, notes
             -remove btn
+    * Search
+      *Query
+      *Results
+    * Saved
+      *All Saved
 
 ## Issues
 * input field
+
+# Search Page
+
+Query
+Results
+
+[
+{headline, date, snippet}, 
+{headline, date, snippet}, 
+{headline, date, snippet}, 
+{headline, date, snippet}
+]
+
+arr = [{}]
