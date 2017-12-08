@@ -10,7 +10,11 @@ class Search extends Component {
 		endYr: "",
 
 		articles: [],
-		test: 'test'
+		
+		headline: "",
+		pub_date: "",
+		snippet: "",
+		url: ""
 	};
 
 	handleInputChange = (ev) => {
@@ -61,14 +65,22 @@ class Search extends Component {
 		console.log(this.state.articles)
 	};
 
-	saveArticle = () => {
+	saveArticle = (ev) => {
+		const articleUrl = ev.currentTarget.getAttribute('url');
+		const articleHeadline = ev.currentTarget.getAttribute('headline');
+		const articleSnippet = ev.currentTarget.getAttribute('snippet');
+		const articlePubDate = ev.currentTarget.getAttribute('pubdate');
 
-		const articleUrl = this.articleHeadline.getAttribute('href');
-		const articleHeadline = this.articleHeadline.textContent;
-		const articleSnippet = this.articleSnippet.textContent;
-		const articlePubDate = this.articlePubDate.textContent;
-		const articleId = this.articleHeadline.getAttribute('id');
+		const articleData = {
+			headline: articleHeadline,
+			pub_date: articlePubDate,
+			snippet: articleSnippet,
+			url: articleUrl,
+		};
 
+		API.saveArticle(articleData)
+			.then(res => console.log(res))
+			.catch(err => console.log(err))
 		
 	}
 
@@ -87,23 +99,27 @@ class Search extends Component {
 						<div key={item.id}>
 							<h1>
 								<a href={item.url} target="_blank"
-									ref={(a) => { this.articleHeadline = a}}
-									id={item.id}
 								>
 								{item.headline}
 								</a>
 					 		</h1>
 					 		<p className="articleSnippet"
-								ref={(p) => { this.articleSnippet = p}}
 					 		>
 						 		{item.snippet}
 						 	</p>
 						 	<p className="articlePubDate"
-								ref={(p) => { this.articlePubDate = p}}
 						 	>
 					 			{item.pub_date}
 					 		</p>
-							<button onClick={this.saveArticle}>Save</button>
+							<button 
+								onClick={(ev) => this.saveArticle(ev)}
+								headline={item.headline}
+								url={item.url}
+								snippet={item.snippet}
+								pubdate={item.pub_date}
+							>
+							Save
+							</button>
 					 	</div>
 
 						))}
